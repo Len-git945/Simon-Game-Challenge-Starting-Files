@@ -4,13 +4,29 @@ gamePattern=[];
 var started = false;
 var level=0;
 
-$("body").on("keydown",function(){
-    if (!started){
-        $("#level-title").text("Level "+level);
-        nextSequence();
-        started=true;
+// GANTI KODE DI ATAS DENGAN KODE INI:
+
+// 1. Tetap pakai ini untuk desktop
+$(document).keydown(function() {
+  if (!started) {
+    $("#level-title").text("Level " + level);
+    nextSequence();
+    started = true;
+  }
+});
+
+// 2. Tambahkan ini tepat di bawahnya untuk mobile
+$(document).on("click touchstart", function(event) {
+  // Ganti ".btn" dengan class tombol warna Simon Game Anda agar tidak konflik
+  if (!$(event.target).hasClass("btn")) { 
+    if (!started) {
+      $("#level-title").text("Level " + level);
+      nextSequence();
+      started = true;
     }
-})
+  }
+});
+
 
 function checkAnswer(currentLevel){
     if (gamePattern[currentLevel]===userClickedPattern[currentLevel]){
