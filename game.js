@@ -6,23 +6,30 @@ var level=0;
 
 // GANTI KODE DI ATAS DENGAN KODE INI:
 
-// 1. Tetap pakai ini untuk desktop
-$(document).keydown(function() {
-  if (!started) {
-    $("#level-title").text("Level " + level);
-    nextSequence();
-    started = true;
-  }
+
+function startGame() {
+    if (!started) {
+        $("#level-title").text("Level " + level);
+        started = true;
+        nextSequence();
+    }
+}
+
+// Desktop: tekan keyboard
+$(document).on("keydown", function() {
+    startGame();
 });
 
-// 2. Tambahkan ini tepat di bawahnya untuk mobile
-$(document).on("pointerdown", function() {
-  if (!started) {
-    $("#level-title").text("Level " + level);
-    nextSequence();
-    started = true;
-  }
+// Mobile dan desktop: tap layar
+$(document).on("pointerdown", function(event) {
+    // Jangan mulai game jika yang disentuh tombol warna
+    if ($(event.target).closest(".btn").length) {
+        return;
+    }
+
+    startGame();
 });
+
 
 
 function checkAnswer(currentLevel){
