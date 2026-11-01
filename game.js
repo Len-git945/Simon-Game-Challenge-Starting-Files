@@ -16,14 +16,11 @@ $(document).keydown(function() {
 });
 
 // 2. Tambahkan ini tepat di bawahnya untuk mobile
-$(document).on("click touchstart", function(event) {
-  // Ganti ".btn" dengan class tombol warna Simon Game Anda agar tidak konflik
-  if (!$(event.target).hasClass("btn")) { 
-    if (!started) {
-      $("#level-title").text("Level " + level);
-      nextSequence();
-      started = true;
-    }
+$(document).click(function() {
+  if (!started) {
+    $("#level-title").text("Level " + level);
+    nextSequence();
+    started = true;
   }
 });
 
