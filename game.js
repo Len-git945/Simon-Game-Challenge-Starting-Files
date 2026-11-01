@@ -16,7 +16,7 @@ $(document).keydown(function() {
 });
 
 // 2. Tambahkan ini tepat di bawahnya untuk mobile
-$(document).click(function() {
+$(document).on("pointerdown", function() {
   if (!started) {
     $("#level-title").text("Level " + level);
     nextSequence();
